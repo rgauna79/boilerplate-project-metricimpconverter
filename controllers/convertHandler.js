@@ -19,7 +19,7 @@ function ConvertHandler() {
     let result = numberStringSplitter(input)[0];
     let nums = checkDiv(result);
     if (!nums) {
-      return undefined;
+      return "invalid number";
     }
     let num1 = nums[0];
     let num2 = nums[1] || "1";
@@ -32,7 +32,9 @@ function ConvertHandler() {
   };
 
   this.getUnit = function (input) {
+    
     let result = numberStringSplitter(input)[1].toLowerCase();
+    //console.log(result)
     switch (result) {
       case "km":
         return "km";
@@ -105,7 +107,7 @@ function ConvertHandler() {
       case "gal":
         result = initNum * galToL;
         break;
-      case "L":
+      case "l":
         result = initNum / galToL;
         break;
       case "lbs":
@@ -120,14 +122,14 @@ function ConvertHandler() {
       default:
         result = undefined;
     }
-    //console.log(result);
+    
     return parseFloat(result.toFixed(5));
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
     return `${initNum} ${this.spellOutUnit(
       initUnit
-    )} converts to ${this.spellOutUnit(returnUnit)} `;
+    )} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
   };
 }
 
